@@ -30,6 +30,11 @@ public class WebController {
         return "signin";
     }
     
+    @RequestMapping("/SignUp")
+    public String signup() throws Exception {
+        return "signup";
+    }
+    
     @RequestMapping("/CheckOut")
     public String checkout() throws Exception {
         return "checkout";

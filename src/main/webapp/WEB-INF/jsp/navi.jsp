@@ -16,7 +16,7 @@
       <div class="col-4 d-flex justify-content-end align-items-center">
         <a class="btn btn-sm btn-info" href="./SignIn">로그인/로그아웃</a> <span style="width:10px"></span>
         <a class="btn btn-sm btn-outline-secondary" href="#">나의메뉴</a> <span style="width:10px"></span>
-        <a class="btn btn-sm btn-info" href="./SignIn">회원가입</a>  
+        <a class="btn btn-sm btn-info" href="./SignUp">회원가입</a>  
         <a class="btn btn-sm btn-warning" href="./CheckOut">장바구니</a>  
         
         
