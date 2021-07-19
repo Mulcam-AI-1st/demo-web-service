@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.teamproject.demo.dao.CookingShowDAO">
+
+	<select id="selectAllArticle"
+		resultType="com.teamproject.demo.vo.CookingShowVO">
+
+            <![CDATA[
+            SELECT  cs.idx as idx, 
+		            mb.name as authorid, 
+		            cd.value as categoryid, 
+		            cs.title as title, 
+		            cs.contents as contents,
+		            cs.imageurl as imageurl,
+		            cs.recommendation as recommendation,
+		            cs.postdate as postdate,
+		            cs.modifydate as modifydate 
+            
+            FROM jtb_cookingshow_main cs, JTB_CODE cd, JTB_MEMBER mb
+            	where cs.categoryid = cd.code
+            	  and cd.CATEGORY='diet_division'
+            	  and cs.authorid = mb.id
+            order by recommendation desc
+     
+            ]]>
+	</select>
+
+
+
+
+</mapper>
