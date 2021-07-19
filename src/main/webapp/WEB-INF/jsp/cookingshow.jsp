@@ -84,7 +84,9 @@
 	                                            </svg>
 	                                            좋아요
 	                                        </button>
-	                                        <button type="button" class="btn btn-sm btn-outline-secondary">${List.recommendation}</button>
+	                                        <button type="button" class="btn btn-sm btn-outline-secondary">
+	                                        <fmt:formatNumber value="${List.recommendation}" pattern="###,###,###,###" />
+	                                        </button>
 				                            </div>
 		                                    <small class="text-muted">
 		                                    <fmt:formatDate value="${List.postdate}" pattern="yyyy.MM.dd"/>
