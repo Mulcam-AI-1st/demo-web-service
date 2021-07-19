@@ -11,11 +11,11 @@ $(document).ready(function() {
 	
  		$("#signin-submit").click(function(){
 			
-			alert("와따");
+			//alert("와따");
 			
 			$("form").submit();
 			
-			alert("됐다");
+			//alert("됐다");
 	      
   
       });  //end of btn-submit 

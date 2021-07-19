@@ -40,7 +40,8 @@ public class MemberController {
     		System.out.println("MemberController after "+ result.getName());
 			
     		HttpSession session = request.getSession();
-			session.setAttribute("id", id);
+			session.setAttribute("name", result.getName());
+			session.setAttribute("id", result.getId());
 			modelAndView.addObject("restult", "로그인 성공");
 			modelAndView.setViewName("index");
 
@@ -52,6 +53,15 @@ public class MemberController {
 		}
     	return modelAndView;
     }
+    
+    @RequestMapping(value="/SignOut", method = RequestMethod.GET)
+    public String signout(HttpServletRequest request) throws Exception {
+    	HttpSession session = request.getSession();
+		session.removeAttribute("name");
+		session.removeAttribute("id");
+        return "index";
+    }
+    
     
     @RequestMapping(value="/SignUp", method = RequestMethod.GET)
     public String signup() throws Exception {
@@ -72,6 +82,7 @@ public class MemberController {
     		System.out.println("MemberController after");
 			
     		HttpSession session = request.getSession();
+			session.setAttribute("name", result.getName());
 			session.setAttribute("id", result.getId());
 			modelAndView.addObject("member", result);
 			modelAndView.addObject("restult", "회원가입 성공");
