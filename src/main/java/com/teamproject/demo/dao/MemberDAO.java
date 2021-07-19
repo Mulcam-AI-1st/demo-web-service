@@ -13,6 +13,6 @@ public interface MemberDAO {
 	
 	public void insertMember(MemberVO mb); 
 
-	
+	public MemberVO selectMemberById(String id);
 	
 }

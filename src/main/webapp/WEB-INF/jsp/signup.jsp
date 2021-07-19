@@ -30,13 +30,17 @@ $(document).ready(function() {
 	
 	
 	$("#signup-submit").click(function() {
-		alert("홨");
+		//alert("홨");
 		if ( $('#chkNotice').text().indexOf("일치함") == -1) {
 			$('#floatingPassword').val(null);
 			$('#floatingPasswordConfirm').val(null);
-			//alert("비밀번호가 일치하지 않습니다!");
+			alert("비밀번호가 일치하지 않습니다!");
 		   
-		}    
+		} else {
+			
+			$("#signup-form").submit();	
+			
+		}   
 	});
 	
 	
@@ -72,30 +76,30 @@ $(document).ready(function() {
         <div class="col-md-4">
 
 
-            <form id="signup-form">
+            <form id="signup-form" action="./SignUp" method="post">
                 <h1 class="h3 mb-3 fw-normal">회원가입</h1>
 
 
                 <div class="form-floating">
-                    <input type="text" class="form-control" id="floatingInputName" placeholder="Name" required>
+                    <input type="text" name="name" class="form-control" id="floatingInputName" placeholder="Name" required>
                     <label for="floatingInput">이름</label>
                 </div>
 
                 <div class="empty-10"></div>
 
                 <div class="form-floating">
-                    <input type="email" class="form-control" id="floatingInputEmail" placeholder="name@example.com" required>
+                    <input type="email" name="email" class="form-control" id="floatingInputEmail" placeholder="name@example.com" required>
                     <label for="floatingInput">이메일</label>
                 </div>
                 <div class="empty-10"></div>
 
                 <div class="form-floating">
-                    <input type="text" class="form-control" id="floatingInputId" placeholder="Id" required>
+                    <input type="text" name="id" class="form-control" id="floatingInputId" placeholder="Id" required>
                     <label for="floatingInput">아이디</label>
                 </div>
                 <div class="empty-10"></div>
                 <div class="form-floating">
-                    <input type="password" class="form-control" id="floatingPassword" placeholder="Password" required>
+                    <input type="password" name="password" class="form-control" id="floatingPassword" placeholder="Password" required>
                     <label for="floatingPassword">비밀번호</label>
                 </div>
                 <div class="empty-10"></div>

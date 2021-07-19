@@ -5,6 +5,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -52,9 +53,37 @@ public class MemberController {
     	return modelAndView;
     }
     
-    @RequestMapping("/SignUp")
+    @RequestMapping(value="/SignUp", method = RequestMethod.GET)
     public String signup() throws Exception {
         return "signup";
+    }
+    
+    @RequestMapping(value="/SignUp", method = RequestMethod.POST)
+    ModelAndView signup(@ModelAttribute MemberVO mb, HttpServletRequest request) throws Exception {
+    	ModelAndView modelAndView = new ModelAndView();
+    	try {
+    		System.out.println("MemberController "+ mb.getId() );
+    		System.out.println("MemberController "+ mb.getPassword());
+    		System.out.println("MemberController "+ mb.getName());
+    		System.out.println("MemberController "+ mb.getEmail());
+
+    		MemberVO result = memberServiceImpl.registerMember(mb);
+    		
+    		System.out.println("MemberController after");
+			
+    		HttpSession session = request.getSession();
+			session.setAttribute("id", result.getId());
+			modelAndView.addObject("member", result);
+			modelAndView.addObject("restult", "회원가입 성공");
+			modelAndView.setViewName("index");
+
+			
+		} catch(Exception e) {
+			e.printStackTrace();
+			modelAndView.addObject("restult", "회원가입 오류");
+			modelAndView.setViewName("signup");
+		}
+    	return modelAndView;
     }
 
 }

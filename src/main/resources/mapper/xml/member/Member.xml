@@ -4,9 +4,10 @@
 
 <mapper namespace="com.teamproject.demo.dao.MemberDAO">
 
-   <select id="selectMember" parameterType="com.teamproject.demo.vo.MemberVO"  resultType="com.teamproject.demo.vo.MemberVO">
-   
-             /* selectMember # member 에서 데이터 조회 */
+	<select id="selectMember"
+		parameterType="com.teamproject.demo.vo.MemberVO"
+		resultType="com.teamproject.demo.vo.MemberVO">
+
             <![CDATA[
             SELECT  NAME, EMAIL, ID, PASSWORD,  TO_CHAR(SIGNUPDATE,'YYYY-MM-DD')  AS SIGNUPDATE
             
@@ -14,6 +15,29 @@
             
             WHERE id = #{id} and password = #{password} 
             ]]>
-       </select>
-       
+	</select>
+	
+	<select id="selectMemberById"
+		parameterType="String"
+		resultType="com.teamproject.demo.vo.MemberVO">
+
+            <![CDATA[
+            SELECT  NAME, EMAIL, ID, PASSWORD,  TO_CHAR(SIGNUPDATE,'YYYY-MM-DD')  AS SIGNUPDATE
+            
+            FROM JTB_MEMBER
+            
+            WHERE id = #{id} 
+            ]]>
+	</select>
+
+
+	<insert id="insertMember"
+		parameterType="com.teamproject.demo.vo.MemberVO">
+
+            <![CDATA[
+            Insert into JTB_MEMBER values ( #{name}, #{email}, #{id}, #{password},  sysdate )
+            
+            ]]>
+	</insert>
+
 </mapper>

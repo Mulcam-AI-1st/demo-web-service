@@ -6,6 +6,6 @@ public interface MemberService {
 	
 	MemberVO searchMember(String id, String password);
 	
-	void registerMember(MemberVO mb); 
+	MemberVO registerMember(MemberVO mb); 
 
 }
