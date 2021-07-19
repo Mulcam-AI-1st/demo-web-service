@@ -28,20 +28,23 @@ public class MemberController {
     
     
     @RequestMapping(value="/SignIn", method = RequestMethod.POST)
-    ModelAndView signin(@RequestParam(value="id",required=false) String id, @RequestParam(value="password",required=false) String password, HttpServletRequest request) throws Exception {
+    ModelAndView signin(@RequestParam(value="id",required=true) String id, @RequestParam(value="password",required=true) String password, HttpServletRequest request) throws Exception {
     	ModelAndView modelAndView = new ModelAndView();
     	try {
-    		
-			boolean result = memberServiceImpl.searchMember(id, password);
+    		System.out.println("MemberController "+ id);
+    		System.out.println("MemberController "+ password);
+
+    		MemberVO result = memberServiceImpl.searchMember(id, password);
 			
-			if ( !result) throw new Exception();
+			if (result == null) throw new Exception();
 			HttpSession session = request.getSession();
 			session.setAttribute("id", id);
-			modelAndView.setViewName("signin");
+			modelAndView.addObject("restult", "로그인 성공");
+			modelAndView.setViewName("index");
 			
 		} catch(Exception e) {
 			e.printStackTrace();
-			modelAndView.addObject("err", "로그인 오류");
+			modelAndView.addObject("restult", "로그인 오류");
 			modelAndView.setViewName("error");
 		}
     	return modelAndView;

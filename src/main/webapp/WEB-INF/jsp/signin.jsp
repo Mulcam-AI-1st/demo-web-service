@@ -4,18 +4,10 @@
 
 
 <script src="./lib/bootstrap-5.0.2-dist/js/bootstrap.js"></script>
-<!-- Custom styles for this template
-<link href="./lib/css/signin.css" rel="stylesheet">
- -->
- 
- 
 
  <script >
   // form summit(modal);		
-var modal_title_basic = "데이터 전송 확인"
-var modal_body_basic = "정보를 제출하시려면 확인 버튼을 눌러주세요. <br>이미 제출하셨다면 다음 버튼을 클릭하 다음 단계로 이동해주세요." 
-
-var form_name = "signin_form";
+var form_name = "#signin_form";
 var form_target = "./SignIn";
 
 	
@@ -37,7 +29,7 @@ $(document).ready(function() {
 	          
 	          // 요청에 성공하면 함수 실행 data는 응답 데이터가 들어간다
 	          success: function(data, textStatus){     
-			      //alert(textStatus);
+			      alert(textStatus);
 	        	  if( data == 'success') {
 		        	alert("로그인에 성공했습니다. ")
 	        	  } else {
@@ -97,7 +89,7 @@ $(document).ready(function() {
         <div class="col-md-4">
 
 
-            <form name="signin_form" >
+            <form name="signin_form" id="signin_form" >
                 <h1 class="h3 mb-3 fw-normal">로그인</h1>
 
                 <div class="form-floating">

@@ -4,7 +4,7 @@ import com.teamproject.demo.vo.MemberVO;
 
 public interface MemberService {
 	
-	Boolean searchMember(String id, String password);
+	MemberVO searchMember(String id, String password);
 	
 	void registerMember(MemberVO mb); 
 

@@ -15,16 +15,19 @@ public class MemberServiceImpl implements MemberService {
 	
 	
 	@Override
-	public Boolean searchMember(String id, String password) {
+	public MemberVO searchMember(String id, String password) {
+		
+		
+		System.out.println("MemberServiceImpl "+ id);
+		System.out.println("MemberServiceImpl "+ password);
 		
 		MemberVO mb = memberDAO.selectMember(id, password);
 		
-		if (mb == null) {
-			return false;
-		} else {
-			return true;
-		}
+		
+		System.out.println("MemberServiceImpl after memberDAO "+ mb.getId());
+		System.out.println("MemberServiceImpl after memberDAO "+ mb.getName());
 	
+		return mb;
 	}
 
 	@Override
