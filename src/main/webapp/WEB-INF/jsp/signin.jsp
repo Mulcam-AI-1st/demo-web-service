@@ -5,59 +5,21 @@
 
 <script src="./lib/bootstrap-5.0.2-dist/js/bootstrap.js"></script>
 
- <script >
-  // form summit(modal);		
-var form_name = "#signin_form";
-var form_target = "./SignIn";
+<script >
 
-	
 $(document).ready(function() {
 	
-
-
-		$("#signin-submit").click(function(){
-    	 
-	      $.ajax({
-	          type: "POST",
-	          dataType: "text",
-	          //async: false,
-	          url: form_target,
-	          data: $(form_name).serialize(),
-	          
-	          // 전송 전 작업
-	          beforeSend : function () {},
-	          
-	          // 요청에 성공하면 함수 실행 data는 응답 데이터가 들어간다
-	          success: function(data, textStatus){     
-			      alert(textStatus);
-	        	  if( data == 'success') {
-		        	alert("로그인에 성공했습니다. ")
-	        	  } else {
-			        alert("로그인에 실패했습니다. ")
-
-	        	  };
-	          },
-	          
-	          // 응답이 종료되면 실행, 성공여부와 상관없이 ajax 완료후 작업 
-	          complete : function(data) {
-	          },
-	          
-	          // 에러가 났을 경우의 작업
-			  error: function(response, textStatus){
-				   
-				  alert("오류가 발생했습니다. ")
-        		  
-	          }
-	     });
-	     
-	     return false; // 페이지 리로딩을 막는다. 
+ 		$("#signin-submit").click(function(){
+			
+			alert("와따");
+			
+			$("form").submit();
+			
+			alert("됐다");
+	      
   
-      });  //end of btn-submit
-               
-             	
-       
-             	
-             	
+      });  //end of btn-submit 
+      
   }); 
 
  </script> 
@@ -89,7 +51,7 @@ $(document).ready(function() {
         <div class="col-md-4">
 
 
-            <form name="signin_form" id="signin_form" >
+            <form name="signin_form" id="signin_form" action="./SignIn" method="post" >
                 <h1 class="h3 mb-3 fw-normal">로그인</h1>
 
                 <div class="form-floating">

@@ -4,12 +4,14 @@
 
 <mapper namespace="com.teamproject.demo.dao.MemberDAO">
 
-   <select id="selectMember" parameterType="String"  resultType="com.teamproject.demo.vo.MemberVO">
+   <select id="selectMember" parameterType="com.teamproject.demo.vo.MemberVO"  resultType="com.teamproject.demo.vo.MemberVO">
    
              /* selectMember # member 에서 데이터 조회 */
             <![CDATA[
             SELECT  NAME, EMAIL, ID, PASSWORD,  TO_CHAR(SIGNUPDATE,'YYYY-MM-DD')  AS SIGNUPDATE
+            
             FROM JTB_MEMBER
+            
             WHERE id = #{id} and password = #{password} 
             ]]>
        </select>

@@ -18,7 +18,6 @@ import com.teamproject.demo.vo.MemberVO;
 public class MemberController {
 	
     @Autowired
-    MemberVO memberVO;
     MemberServiceImpl memberServiceImpl;
 
     @RequestMapping(value="/SignIn", method = RequestMethod.GET)
@@ -35,17 +34,20 @@ public class MemberController {
     		System.out.println("MemberController "+ password);
 
     		MemberVO result = memberServiceImpl.searchMember(id, password);
+    		
+    		System.out.println("MemberController after "+ result.getId());
+    		System.out.println("MemberController after "+ result.getName());
 			
-			if (result == null) throw new Exception();
-			HttpSession session = request.getSession();
+    		HttpSession session = request.getSession();
 			session.setAttribute("id", id);
 			modelAndView.addObject("restult", "로그인 성공");
 			modelAndView.setViewName("index");
+
 			
 		} catch(Exception e) {
 			e.printStackTrace();
 			modelAndView.addObject("restult", "로그인 오류");
-			modelAndView.setViewName("error");
+			modelAndView.setViewName("signin");
 		}
     	return modelAndView;
     }

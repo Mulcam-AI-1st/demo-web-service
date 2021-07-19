@@ -14,6 +14,14 @@ public class MemberVO {
 	
 	public MemberVO() {};
 	
+	public MemberVO(String id, String password) {
+		super();
+	
+		this.id = id;
+		this.password = password;
+	
+	}
+	
 	public MemberVO(String name, String email, String id, String password, String signupdate) {
 		super();
 		this.name = name;

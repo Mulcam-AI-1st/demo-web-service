@@ -21,7 +21,7 @@ public class MemberServiceImpl implements MemberService {
 		System.out.println("MemberServiceImpl "+ id);
 		System.out.println("MemberServiceImpl "+ password);
 		
-		MemberVO mb = memberDAO.selectMember(id, password);
+		MemberVO mb = memberDAO.selectMember(new MemberVO(id, password));
 		
 		
 		System.out.println("MemberServiceImpl after memberDAO "+ mb.getId());
