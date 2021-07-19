@@ -115,7 +115,7 @@ $(document).ready(function() {
                     </div>
                 </div>
                 <button class="w-100 btn btn-lg btn-primary" id="signup-submit" type="submit">가입하기</button>
-                <p class="mt-5 mb-3 text-muted">&copy; 2021</p>
+                <p class="mt-5 mb-3 text-muted">&copy; 2021 demo project</p>
             </form>
 
         </div>

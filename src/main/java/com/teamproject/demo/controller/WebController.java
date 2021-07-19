@@ -24,16 +24,7 @@ public class WebController {
     public String info() throws Exception {
         return "readme";
     }
-    
-    @RequestMapping("/SignIn")
-    public String signin() throws Exception {
-        return "signin";
-    }
-    
-    @RequestMapping("/SignUp")
-    public String signup() throws Exception {
-        return "signup";
-    }
+
     
     @RequestMapping("/CheckOut")
     public String checkout() throws Exception {
