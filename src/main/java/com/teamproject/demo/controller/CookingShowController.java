@@ -61,5 +61,10 @@ public class CookingShowController {
 	public String cookingshow_detail() throws Exception {
 		return "cookingshow_detail";
 	}
+	
+	@RequestMapping(value = "/addCookingShow", method = RequestMethod.GET)
+	public String addddcookingshow_detail() throws Exception {
+		return "addCookingShow";
+	}
 
 }
