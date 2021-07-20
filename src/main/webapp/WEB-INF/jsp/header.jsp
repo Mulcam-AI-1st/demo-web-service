@@ -49,6 +49,11 @@
         .text-left {
             text-align: left;
         }
+        
+        @font-face{ font-family:'AppleGothic'; 
+        src:url('./lib/fonts/AppleSDGothicNeoM.woff') format(‘woff’); }
+
+
 
     </style>
 

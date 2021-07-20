@@ -25,16 +25,53 @@
 
 </style>
 <script>
+
+function pickedIDX(articleId) {
+    //alert($(this));
+    
+	$.ajax({
+          type: "GET",
+          dataType: "text",
+          url: "./CookingShowRecommendation",
+          data: { idx : articleId  },
+          dataType :"text", // 데이터타입을 text 으로 받아옴
+
+          // 전송 전 작업
+          beforeSend: function() {},
+
+          // 요청에 성공하면 함수 실행 data는 응답 데이터가 들어간다
+          success: function(data, textStatus) {
+
+              var innerId = "#recommendation-cnt-"+articleId ;
+              //alert(data);
+              if (textStatus == 'success') {
+            	  $(innerId).text(data);
+
+              };
+          },
+
+          // 응답이 종료되면 실행, 성공여부와 상관없이 ajax 완료후 작업 
+          complete: function(data) {},
+
+          // 에러가 났을 경우의 작업
+          error: function(response, textStatus) {
+              //$("#exampleModal").show();
+              $(".modal-title").html("알림");
+              $(".modal-body").html("오류가 발생했습니다.");
+
+          }
+      });
+      return false; // 페이지 리로딩을 막는다. 
+	
+}
+
     $(document).ready(function() {
-        $("#cookingshow-add-btn").click((function() {
+        $("#cookingshow-add-btn").click(function() {
 
             //alert("와따");
-            location.href="./addCookingShow";
-            
+            location.href = "./addCookingShow";
 
-        }))
-
-
+        });
 
     });
 
@@ -83,7 +120,7 @@
             <div class="container">
                 <!-- 서버에서 불러오는 게시글  -->
                 <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-                    <c:forEach items="${csList}" var="List">
+                    <c:forEach items="${csList}" var="List" varStatus="status">
 
                         <c:if test="${i%j == 0 }">
 
@@ -94,19 +131,20 @@
                             <div class="card shadow-sm">
                                 <img src="${List.imageurl}" width="100%" height="225" onclick="javascript:location.href='./CookingShowDetail'" />
                                 <div class="card-body">
-                                    <input type="hidden" name="idx" value="${List.idx}">
+
                                     <p class="card-text" onclick="javascript:location.href='./CookingShowDetail'">${List.authorid} 님 "${List.categoryid}" <br> ${List.title} <br> ${List.contents} </p>
                                     <div class="d-flex justify-content-between align-items-center">
                                         <div class="btn-group">
-                                            <button type="button" class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-suit-heart" viewBox="0 0 16 16">
-                                                    <path d="m8 6.236-.894-1.789c-.222-.443-.607-1.08-1.152-1.595C5.418 2.345 4.776 2 4 2 2.324 2 1 3.326 1 4.92c0 1.211.554 2.066 1.868 3.37.337.334.721.695 1.146 1.093C5.122 10.423 6.5 11.717 8 13.447c1.5-1.73 2.878-3.024 3.986-4.064.425-.398.81-.76 1.146-1.093C14.446 6.986 15 6.131 15 4.92 15 3.326 13.676 2 12 2c-.777 0-1.418.345-1.954.852-.545.515-.93 1.152-1.152 1.595L8 6.236zm.392 8.292a.513.513 0 0 1-.784 0c-1.601-1.902-3.05-3.262-4.243-4.381C1.3 8.208 0 6.989 0 4.92 0 2.755 1.79 1 4 1c1.6 0 2.719 1.05 3.404 2.008.26.365.458.716.596.992a7.55 7.55 0 0 1 .596-.992C9.281 2.049 10.4 1 12 1c2.21 0 4 1.755 4 3.92 0 2.069-1.3 3.288-3.365 5.227-1.193 1.12-2.642 2.48-4.243 4.38z"></path>
-                                                </svg>
+                                            <button type="button" id="recommendation-btn" class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#exampleModal" onclick="javascript:pickedIDX(${List.idx});">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-heart-fill" viewBox="0 0 16 16">
+												  <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"></path>
+												</svg>
                                                 좋아요
                                             </button>
-                                            <button type="button" class="btn btn-sm btn-outline-secondary">
+                                            <button type="button" class="btn btn-sm btn-outline-secondary" id="recommendation-cnt-${List.idx}" >
                                                 <fmt:formatNumber value="${List.recommendation}" pattern="###,###,###,###" />
                                             </button>
+                                            
                                         </div>
                                         <small class="text-muted">
                                             <fmt:formatDate value="${List.postdate}" pattern="yyyy.MM.dd" />

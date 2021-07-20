@@ -8,5 +8,11 @@ public interface CookingShowService {
 	
 	List<CookingShowVO> searchAllArticle();
 	
+	void addRecommendation(String articleId);
+	
+	String searchRecommendation(String articleId);
+	
+	
+	
 
 }

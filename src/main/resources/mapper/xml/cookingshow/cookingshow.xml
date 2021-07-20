@@ -26,6 +26,35 @@
      
             ]]>
 	</select>
+	
+	
+	<update id="updateRecommendation"
+		parameterType="String">
+
+            <![CDATA[
+            UPDATE  jtb_cookingshow_main
+               SET
+            	    recommendation = recommendation + 1
+		        
+             WHERE idx = #{articleId}
+     
+            ]]>
+	</update>
+	
+	<select id="selectRecommendationById"
+		parameterType="String"
+		resultType="String">
+
+            <![CDATA[
+            SELECT  TO_CHAR(cs.recommendation)  as recommendation
+            
+             FROM jtb_cookingshow_main cs
+            WHERE cs.idx = #{articleId}
+ 
+            ]]>
+	</select>
+	
+
 
 
 

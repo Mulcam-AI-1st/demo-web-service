@@ -13,5 +13,9 @@ import com.teamproject.demo.vo.CookingShowVO;
 public interface CookingShowDAO {
 	
 	public List<CookingShowVO> selectAllArticle();
+	
+	public void updateRecommendation(String articleId);
+	
+	public String selectRecommendationById(String articleId);
 
 }

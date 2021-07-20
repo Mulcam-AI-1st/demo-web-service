@@ -1,11 +1,16 @@
 package com.teamproject.demo.controller;
 
+import java.io.PrintWriter;
+import java.text.DecimalFormat;
 import java.util.List;
+
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.teamproject.demo.service.CookingShowServiceImpl;
@@ -67,4 +72,29 @@ public class CookingShowController {
 		return "addCookingShow";
 	}
 
+	@RequestMapping(value = "/CookingShowRecommendation", method = RequestMethod.GET)
+	void cookignshowrecommendation(@RequestParam(value = "idx", required = true) String idx, HttpServletResponse response) throws Exception {
+		
+	
+		service.addRecommendation(idx);
+		
+		String recommendationCnt = service.searchRecommendation(idx);
+		
+		PrintWriter out= response.getWriter();
+		
+		DecimalFormat decFormat = new DecimalFormat("###,###");
+
+		String recommendationCntStr = decFormat.format(Integer.parseInt(recommendationCnt));
+		 
+		out.append(recommendationCntStr);
+
+		out.flush();
+		out.close();
+		System.out.println("CookingShowRecommendation start" + idx);
+	
+		
+	}	
+
+	
+	
 }
