@@ -110,9 +110,36 @@
              FROM JTB_COOKINGSHOW_COMMENT cc, JTB_MEMBER mb
             WHERE cc.CommenterID = mb.id
               and cc.idx = #{articleId}
+              
+              order by cc.POSTDATE desc
  
             ]]>
 	</select>
+	
+	
+	<insert id="insertComments"
+		parameterType="CookingShowCommentsVO">
+
+            <![CDATA[
+            INSERT INTO 
+            	jtb_cookingshow_comment (
+										    idx,
+										    cidx,
+										    commenterid,
+										    comments,
+										    postdate,
+										    modifydate
+										) VALUES (
+										    #{idx},
+										    (SELECT max(cidx) + 1 as newCidx FROM jtb_cookingshow_comment),
+										    #{commenterId},
+										    #{comments},
+										    sysdate,
+										    null
+										)
+ 
+            ]]>
+	</insert>
 	
 
 

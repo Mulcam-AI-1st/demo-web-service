@@ -63,7 +63,42 @@ function pickedIDX(articleId) {
       });
       return false; // 페이지 리로딩을 막는다. 
 	
-}
+};
+
+$(document).ready(function() {
+	
+
+	$("#comments-btn").click(function(){
+		
+		if( $("#comments").val() == null || $("#comments").val() == "") {
+    		  
+      		alert("댓글을 입력하세요");	
+      		return false;
+      	  } 
+		
+		
+		  <c:choose>
+	          <c:when test="${id eq null }">
+	          		alert("댓글을 다시려면 로그인이 필요합니다.");	 
+	          </c:when>
+	
+	          <c:otherwise>
+	          
+	          	 
+	          	$("#comments-form").submit();	
+	          	 	          		
+	          </c:otherwise>
+      	  </c:choose>
+      
+		
+	});
+
+	
+});
+
+
+
+
 
 
 </script>
@@ -148,6 +183,45 @@ function pickedIDX(articleId) {
 
             </article>
             <br>
+            <!--  댓글 입력 창 시작 -->
+            <form name="comments-form" id="comments-form" action="./addCookingShowComments" method="post">
+	           	 <div class="card">
+		                <div class="card-header">
+		                
+		                <!-- 댓글 로그인 시작 -->
+		                 <c:choose>
+	                        <c:when test="${id eq null }">
+	                            <a class="btn btn-sm btn-info" href="./SignIn?idx=${cs.idx}" >로그인</a> <span style="width: 10px"></span> 
+	                        </c:when>
+
+	                        <c:otherwise>
+	                            <p>${name}(${id}) 님</p> <span style="width: 10px"></span> 
+	                            <input type="hidden" name="idx" value="${cs.idx}">
+	                            <input type="hidden" name="commenterId" value="${id}">
+	                        </c:otherwise>
+	                    </c:choose>
+		                <!--  댓글 로그인 끝  -->   
+		                </div>
+		                <div class="card-body">
+		                    <blockquote class="blockquote mb-0">
+		                     <div style="display:inline-block;float:left; width:87%">
+		                        <div class="form-floating">
+								  <textarea class="form-control" name="comments" id="comments" placeholder="Leave a comment here" id="floatingTextarea2" style="height: 100px"></textarea>
+								  <label for="floatingTextarea2">Comments</label>
+								</div>
+							 </div>
+							 <div style="display:inline-block;float:right; width:10%">
+								<div class="d-grid gap-2">
+								  <button class="btn btn-primary" type="button" id="comments-btn" style="height: 100px" >댓글 달기</button>
+								</div>
+							</div>	
+		                    </blockquote>
+		                </div>
+		                <br>
+		            </div> 
+		    </form>        
+            <!--  댓글 입력 창 끝 -->
+            
             <!--  댓글 반복문 시작  -->
             <c:forEach items="${cscList}" var="cList" varStatus="status">
 	            <div class="card">

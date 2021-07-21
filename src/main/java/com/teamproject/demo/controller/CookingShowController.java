@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -74,48 +75,22 @@ public class CookingShowController {
 		// 게시글 정보 가져오기 	
 		CookingShowVO cs = service.searchCookingShowById(idx);
 		
-		System.out.println("cookingshow start" + cs.getIdx());
-		System.out.println("cookingshow start" + cs.getAuthorid());
-		System.out.println("cookingshow start" + cs.getCategoryid());
-		System.out.println("cookingshow start" + cs.getTitle());
-		System.out.println("cookingshow start" + cs.getContents());
-		System.out.println("cookingshow start" + cs.getImageurl());
-		System.out.println("cookingshow start" + cs.getRecommendation());
-		System.out.println("cookingshow start" + cs.getPostdate());
-		System.out.println("cookingshow start" + cs.getModifydate());
-				
+
 		// 본문 추천이유 가져오기 
 		List<CookingShowDetailVO> csdList = service.searchCookingShowDetailById(idx);
 		
-		for (CookingShowDetailVO dlist : csdList) {
-			System.out.println("CookingShowDetail start" + dlist.getIdx());
-			System.out.println("CookingShowDetail start" + dlist.getRidx());
-			System.out.println("CookingShowDetail start" + dlist.getReasons());
-		}
 		
 		// 커멘트 가져오기
 		List<CookingShowCommentsVO> cscList = service.searchCookingShowCommentsById(idx);
 
-		
-		for (CookingShowCommentsVO clist : cscList) {
-			System.out.println("CookingShowComments start" + clist.getIdx());
-			System.out.println("CookingShowComments start" + clist.getCidx());
-			System.out.println("CookingShowComments start" + clist.getCommenterId());
-			System.out.println("CookingShowComments start" + clist.getComments());
-			System.out.println("CookingShowComments start" + clist.getPostDate());
-			System.out.println("CookingShowComments start" + clist.getModifyDate());
-							
-		}
-		
-		
+	
 		
 		modelAndView.addObject("cs", cs);
 		
 		modelAndView.addObject("csdList", csdList);
 		
 		modelAndView.addObject("cscList", cscList);
-		
-		
+				
 		modelAndView.setViewName("cookingshow_detail");
 		
 		} catch (Exception e) {
@@ -126,6 +101,27 @@ public class CookingShowController {
 		}
 		return modelAndView;
 	}
+	
+	@RequestMapping(value = "/addCookingShowComments", method = RequestMethod.POST)
+	ModelAndView addCookingShowComments(@ModelAttribute("csc") CookingShowCommentsVO csc) throws Exception {
+		
+		System.out.println("addCookingShowComments start");
+		ModelAndView modelAndView = new ModelAndView();
+		
+		try {
+			service.addCookingShowComments(csc);
+			modelAndView.addObject("csc", csc);
+			modelAndView.setViewName("redirect:./CookingShowDetail?idx="+csc.getIdx());
+		
+		} catch (Exception e) {
+			e.printStackTrace();
+			modelAndView.addObject("err", "오류 발생");
+			modelAndView.setViewName("error");
+			
+		}
+		return modelAndView;
+	}
+	
 	
 	@RequestMapping(value = "/addCookingShow", method = RequestMethod.GET)
 	public String addddcookingshow_detail() throws Exception {

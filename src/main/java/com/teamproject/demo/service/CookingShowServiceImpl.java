@@ -60,6 +60,13 @@ public class CookingShowServiceImpl implements CookingShowService {
 		return cookingShowDAO.selectArticleCommentsById(articleId);
 	}
 
+	@Override
+	public void addCookingShowComments(CookingShowCommentsVO csc) {
+		System.out.println("CookingShowServiceImpl addCookingShowComments");
+		
+		cookingShowDAO.insertComments(csc);
+	}
+
 	
 	
 }

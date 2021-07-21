@@ -22,29 +22,38 @@ public class MemberController {
     MemberServiceImpl memberServiceImpl;
 
     @RequestMapping(value="/SignIn", method = RequestMethod.GET)
-    public String signin() throws Exception {
-        return "signin";
+    public String signin(@RequestParam(value="idx",required=true) int idx, HttpServletRequest request) throws Exception {
+        
+    	request.setAttribute("idx", idx);
+    	
+    	return "signin";
     }
     
     
     @RequestMapping(value="/SignIn", method = RequestMethod.POST)
-    ModelAndView signin(@RequestParam(value="id",required=true) String id, @RequestParam(value="password",required=true) String password, HttpServletRequest request) throws Exception {
+    ModelAndView signin(@RequestParam(value="idx",required=true) int idx, @RequestParam(value="id",required=true) String id, @RequestParam(value="password",required=true) String password, HttpServletRequest request) throws Exception {
     	ModelAndView modelAndView = new ModelAndView();
     	try {
-    		System.out.println("MemberController "+ id);
-    		System.out.println("MemberController "+ password);
+  
 
     		MemberVO result = memberServiceImpl.searchMember(id, password);
     		
-    		System.out.println("MemberController after "+ result.getId());
-    		System.out.println("MemberController after "+ result.getName());
+
 			
     		HttpSession session = request.getSession();
 			session.setAttribute("name", result.getName());
 			session.setAttribute("id", result.getId());
-			modelAndView.addObject("restult", "로그인 성공");
-			modelAndView.setViewName("index");
-
+			
+			if ( idx == 0) {
+			
+				modelAndView.addObject("restult", "로그인 성공");
+				modelAndView.setViewName("index");
+			} else {
+				modelAndView.addObject("restult", "로그인 성공, 코멘트 페이지 ");
+				modelAndView.setViewName("redirect:./CookingShowDetail?idx="+idx);
+				
+			}
+				
 			
 		} catch(Exception e) {
 			e.printStackTrace();
@@ -53,6 +62,8 @@ public class MemberController {
 		}
     	return modelAndView;
     }
+    
+
     
     @RequestMapping(value="/SignOut", method = RequestMethod.GET)
     public String signout(HttpServletRequest request) throws Exception {

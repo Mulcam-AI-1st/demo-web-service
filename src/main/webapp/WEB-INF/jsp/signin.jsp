@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <jsp:include page="./header.jsp"></jsp:include>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 
 <script src="./lib/bootstrap-5.0.2-dist/js/bootstrap.js"></script>
@@ -53,7 +54,7 @@ $(document).ready(function() {
 
             <form name="signin_form" id="signin_form" action="./SignIn" method="post" >
                 <h1 class="h3 mb-3 fw-normal">로그인</h1>
-
+				<input type="hidden" name="idx" value="${idx}">
                 <div class="form-floating">
                     <input type="text" name="id" class="form-control" id="floatingInput" placeholder="id">
                     <label for="floatingInput">아이디</label>

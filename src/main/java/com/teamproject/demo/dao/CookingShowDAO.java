@@ -26,6 +26,7 @@ public interface CookingShowDAO {
 	
 	public List<CookingShowCommentsVO> selectArticleCommentsById(String articleId);
 	
+	public void insertComments(CookingShowCommentsVO csc);
 	
 
 }

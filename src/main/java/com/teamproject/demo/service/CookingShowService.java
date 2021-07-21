@@ -19,9 +19,8 @@ public interface CookingShowService {
 	List<CookingShowDetailVO> searchCookingShowDetailById(String articleId);
 		
 	List<CookingShowCommentsVO> searchCookingShowCommentsById(String articleId);
-
 	
-	
+	void addCookingShowComments(CookingShowCommentsVO csc);
 	
 	
 	
