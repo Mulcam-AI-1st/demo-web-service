@@ -217,9 +217,10 @@ $(document).ready(function() {
 							</div>	
 		                    </blockquote>
 		                </div>
-		                <br>
+		                
 		            </div> 
-		    </form>        
+		    </form>     
+		    <br>   
             <!--  댓글 입력 창 끝 -->
             
             <!--  댓글 반복문 시작  -->

@@ -132,7 +132,7 @@ function pickedIDX(articleId) {
                                 <img src="${List.imageurl}" width="100%" height="225" onclick="javascript:location.href='./CookingShowDetail?idx=${List.idx}'" />
                                 <div class="card-body">
 
-                                    <p class="card-text" onclick="javascript:location.href='./CookingShowDetail?idx=${List.idx}'">${List.authorid} 님 "${List.categoryid}" <br> ${List.title} <br> ${List.contents} </p>
+                                    <p class="card-text" onclick="javascript:location.href='./CookingShowDetail?idx=${List.idx}'">${List.authorid} 님 "${List.categoryid}" <br> ${List.title}  </p>
                                     <div class="d-flex justify-content-between align-items-center">
                                         <div class="btn-group">
                                             <button type="button" id="recommendation-btn" class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#exampleModal" onclick="javascript:pickedIDX(${List.idx});">
