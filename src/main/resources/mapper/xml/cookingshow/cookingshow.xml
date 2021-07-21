@@ -5,7 +5,7 @@
 <mapper namespace="com.teamproject.demo.dao.CookingShowDAO">
 
 	<select id="selectAllArticle"
-		resultType="com.teamproject.demo.vo.CookingShowVO">
+		resultType="CookingShowVO">
 
             <![CDATA[
             SELECT  cs.idx as idx, 
@@ -50,6 +50,66 @@
             
              FROM jtb_cookingshow_main cs
             WHERE cs.idx = #{articleId}
+ 
+            ]]>
+	</select>
+	
+	
+	<select id="selectArticleById"
+		parameterType="String"
+		resultType="CookingShowVO">
+
+            <![CDATA[
+             SELECT  cs.idx as idx, 
+		            mb.name as authorid, 
+		            cd.value as categoryid, 
+		            cs.title as title, 
+		            cs.contents as contents,
+		            cs.imageurl as imageurl,
+		            cs.recommendation as recommendation,
+		            cs.postdate as postdate,
+		            cs.modifydate as modifydate 
+            
+            FROM jtb_cookingshow_main cs, JTB_CODE cd, JTB_MEMBER mb
+            	where cs.categoryid = cd.code
+            	  and cd.CATEGORY='diet_division'
+            	  and cs.authorid = mb.id
+           	  	  and cs.idx = #{articleId}
+ 
+            ]]>
+	</select>
+	
+	
+	<select id="selectArticleDetailById"
+		parameterType="String"
+		resultType="CookingShowDetailVO">
+
+            <![CDATA[
+            SELECT  *
+            
+             FROM jtb_cookingshow_detail 
+            WHERE idx = #{articleId}
+ 
+            ]]>
+	</select>
+	
+	
+	
+	<select id="selectArticleCommentsById"
+		parameterType="String"
+		resultType="CookingShowCommentsVO">
+
+            <![CDATA[
+                  SELECT cc.IDX as idx,
+					cc.CIDX as cidx,
+					mb.name as commenterId,
+					cc.comments as comments,
+					cc.POSTDATE as postDate,
+					cc.MODIFYDATE as modityDate
+            
+             FROM JTB_COOKINGSHOW_COMMENT cc, JTB_MEMBER mb
+            WHERE cc.CommenterID = mb.id
+              and cc.idx = #{articleId}
  
             ]]>
 	</select>

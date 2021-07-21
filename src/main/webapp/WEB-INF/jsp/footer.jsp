@@ -19,7 +19,7 @@
         <div class="modal-content" style="text-align:center;background-color: rgba(0,0,0,.0001) !important;border:0 !important;">
             <div class="modal-header" style="border:0;" >
                 <h5 class="modal-title" id="staticBackdropLabel"></h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <!-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>-->
             </div>
             <div class="modal-body " style="text-align:center;" >
                 <svg xmlns="http://www.w3.org/2000/svg" width="160" height="160" fill="#d0021b" class="bi bi-heart-fill" viewBox="0 0 16 16">

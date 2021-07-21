@@ -6,6 +6,8 @@ import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 
+import com.teamproject.demo.vo.CookingShowCommentsVO;
+import com.teamproject.demo.vo.CookingShowDetailVO;
 import com.teamproject.demo.vo.CookingShowVO;
 
 @Mapper
@@ -17,5 +19,13 @@ public interface CookingShowDAO {
 	public void updateRecommendation(String articleId);
 	
 	public String selectRecommendationById(String articleId);
+	
+	public CookingShowVO selectArticleById(String articleId);
+	
+	public List<CookingShowDetailVO> selectArticleDetailById(String articleId);
+	
+	public List<CookingShowCommentsVO> selectArticleCommentsById(String articleId);
+	
+	
 
 }
