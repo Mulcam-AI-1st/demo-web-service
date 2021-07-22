@@ -8,6 +8,43 @@
 <!-- Bootstrap core CSS -->
 <link href="./lib/bootstrap-5.0.2-dist/css/bootstrap.css" rel="stylesheet">
 
+<!-- editor.md  -->
+<script src="./lib/editormd/editormd.js"></script>
+
+<script src="./lib/editormd/lib/marked.min.js"></script>
+<script src="./lib/editormd/lib/prettify.min.js"></script>
+<script src="./lib/editormd/lib/raphael.min.js"></script>
+<script src="./lib/editormd/lib/underscore.min.js"></script>
+<script src="./lib/editormd/lib/sequence-diagram.min.js"></script>
+<script src="./lib/editormd/lib/flowchart.min.js"></script>
+<script src="./lib/editormd/lib/jquery.flowchart.min.js"></script>
+
+
+<link rel="stylesheet" href="./lib/editormd/css/editormd.preview.css"  rel="stylesheet">
+<link rel="stylesheet" href="./lib/editormd/css/editormd.css"  rel="stylesheet">
+
+<style>            
+    .editormd-html-preview {
+        width: 90%;
+        margin: 0 auto;
+    }
+</style>
+<script type="text/javascript">
+    $(function() { editormd.markdownToHTML("editormd-view", {
+                   htmlDecode      : true,
+                   emoji           : true,
+                   taskList        : true,
+                   tex             : true,  
+                   flowChart       : true,  
+                   sequenceDiagram : true, 
+            });
+    });
+</script>
+
+
+
+<!--  editor.md 끝 	 -->
+
 <style>
     .bd-placeholder-img {
         font-size: 1.125rem;
@@ -89,38 +126,15 @@ $(document).ready(function() {
 	          	 	          		
 	          </c:otherwise>
       	  </c:choose>
-      
-		
+
 	});
 
-	
 });
-
-
-
-
 
 
 </script>
 
 <jsp:include page="./navi.jsp"></jsp:include>
-<!-- 
-	private int idx;
-	private String authorid;
-	private String categoryid;
-	private String title;
-	private String contents;
-	private String imageurl;
-	private int recommendation;
-	private Date postdate;
-	private Date modifydate; -->
-	
-	
-	
-<!-- 	private int idx;
-	private int ridx;
-	private String reasons; -->
-	
 	
 <main>
     <!--  식단 소개   -->
@@ -143,10 +157,16 @@ $(document).ready(function() {
                 <h3 class="main__h3 hPara fadeInUp">
                   
                         <strong>식단 소개 </strong>
-                  
-
                 </h3>
-                <p class="main__desc hPara fadeInUp">${cs.contents}</p>
+                
+                <!--  본문 시작 -->
+            		<div id="editormd-view">
+	                <textarea style="display:none;">
+						${cs.contents}
+                    </textarea>          
+        		    </div>
+				<!-- 본문 끝 -->
+				
                 <div style="text-align:center">
                     <img src="${cs.imageurl}" class="img-fluid">
                 </div>
