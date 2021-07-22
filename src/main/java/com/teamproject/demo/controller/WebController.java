@@ -38,17 +38,6 @@ public class WebController {
            
     }
     
-    @RequestMapping("/HealthyDiet")
-    public String healthydiet() throws Exception {
-        return "healthydiet";
-        
-    }
-    
-    @RequestMapping("/HealthyDietDetail")
-    public String healthydietdetail() throws Exception {
-        return "healthydiet_detail";
-        
-    }
     
     //@ResponseBody 어노테이션을 이용시 @RestController 처럼 데이터 형태로 결과를 반환
     @RequestMapping("/thisworld")

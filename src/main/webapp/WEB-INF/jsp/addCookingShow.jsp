@@ -82,7 +82,7 @@
         <div class="col-md-12">
 
 
-            <form name="cookingshow_form" commandName="CookingShowArticleReasonsVO" id="cookingshow_form" action="./addCookingShowArticle" method="post">
+            <form name="cookingshow_form" id="cookingshow_form" action="./addCookingShowArticle" method="post" enctype="multipart/form-data">
                 <h1 class="h3 mb-3 fw-normal">게시글 등록</h1>
                 <div class="row">
                     <div class="col-md-4">
@@ -181,7 +181,8 @@
                 <div class="row">
                     <div class="col-md-12">
                         <label for="formFileMultiple" class="form-label">이미지 첨부</label>
-                        <input class="form-control" name="imageurl" type="file" id="formFileMultiple" multiple>
+                        <input type="hidden" name="imageurl">
+                        <input class="form-control" multiple="multiple"  name="file" type="file" id="formFileMultiple" multiple>
                     </div>
                 </div>
                 <div class="empty-10"></div>
