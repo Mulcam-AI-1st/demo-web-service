@@ -136,15 +136,15 @@ public class CookingShowController {
 
 		cs.setIdx(currentIdx+1);
 
-		System.out.println("idx " + cs.getIdx());
-		System.out.println("authorid " + cs.getAuthorid());
-		System.out.println("categoryid " + cs.getCategoryid());
-		System.out.println("title " + cs.getTitle());
-		System.out.println("contents " + cs.getContents());
-		System.out.println("imageurl " + cs.getImageurl()) ;
+//		System.out.println("idx " + cs.getIdx());
+//		System.out.println("authorid " + cs.getAuthorid());
+//		System.out.println("categoryid " + cs.getCategoryid());
+//		System.out.println("title " + cs.getTitle());
+//		System.out.println("contents " + cs.getContents());
+//		System.out.println("imageurl " + cs.getImageurl()) ;
 		
 		
-		System.out.println("reasons size" + cs.getReasonsVOList().size()) ;
+//		System.out.println("reasons size" + cs.getReasonsVOList().size()) ;
 		
 		// 추천 이유 리슽트에 게시글 번호와 추천이유 인덱스 번호 추가
 		
@@ -155,12 +155,12 @@ public class CookingShowController {
 			cs.getReasonsVOList().get(i).setIdx(currentIdx+1);
 			
 			cs.getReasonsVOList().get(i).setRidx(i + 1);
-			
-			System.out.println("getReasonsVOList 반복문");
-			System.out.println("idx " + cs.getReasonsVOList().get(i).getIdx());
-		    System.out.println("ridx " + cs.getReasonsVOList().get(i).getRidx());
-		    System.out.println("reasons " + cs.getReasonsVOList().get(i).getReasons());
-		    System.out.println("");
+//			
+//			System.out.println("getReasonsVOList 반복문");
+//			System.out.println("idx " + cs.getReasonsVOList().get(i).getIdx());
+//		    System.out.println("ridx " + cs.getReasonsVOList().get(i).getRidx());
+//		    System.out.println("reasons " + cs.getReasonsVOList().get(i).getReasons());
+//		    System.out.println("");
 		}
 
 		try {
@@ -170,7 +170,7 @@ public class CookingShowController {
 			// 게시글 상세 나중에 입력
 			service.addCookingShowDetail(cs);
 
-			modelAndView.setViewName("cookingshow");
+			modelAndView.setViewName("redirect:./CookingShow");
 
 		} catch (Exception e) {
 			e.printStackTrace();

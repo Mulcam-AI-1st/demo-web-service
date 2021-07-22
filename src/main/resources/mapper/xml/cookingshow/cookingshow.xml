@@ -21,7 +21,7 @@
             	where cs.categoryid = cd.code
             	  and cd.CATEGORY='diet_division'
             	  and cs.authorid = mb.id
-            order by recommendation desc
+            order by nvl(recommendation,0) desc, cs.postdate desc
      
             ]]>
 	</select>
