@@ -69,7 +69,7 @@ function pickedIDX(articleId) {
         $("#cookingshow-add-btn").click(function() {
 
             //alert("와따");
-            location.href = "./addCookingShow";
+            location.href = "./addCookingShowArticle";
 
         });
 
@@ -110,7 +110,7 @@ function pickedIDX(articleId) {
                 </h3>
             </div>
             <div style="display:inline-block;float:right;">
-                <button type="button" id="cookingshow-add-btn" class="btn btn-sm btn-warning">게시글 등록</button>
+                <button type="button" id="cookingshow-add-btn" class="btn btn-lg btn-warning">게시글 등록</button>
             </div>
 
 

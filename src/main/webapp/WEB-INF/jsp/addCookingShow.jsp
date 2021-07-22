@@ -34,7 +34,7 @@
     	    $('#reasons_wrapper')
     	        .append('<!-- 추천이유 '+AddColNodes+'  -->'
     	        	   +'<div class="form-floating reasons_wrapper" >'
-    	               +'<input type="text" name="reasons" id="reasons_'+AddColNodes+'" class="form-control reasons" placeholder="추천이유를 적어주세요">'
+    	               +'<input type="text" name="reasonsVOList['+(AddColNodes-1)+'].reasons" id="reasons_'+AddColNodes+'" class="form-control reasons" placeholder="추천이유를 적어주세요">'
     	               +'<label for="reasons_'+AddColNodes+'"> 추천 이유 '+AddColNodes+'</label>'
     	               +'</div>' );
     	
@@ -82,7 +82,7 @@
         <div class="col-md-12">
 
 
-            <form name="cookingshow_form" id="cookingshow_form" action="./addCookingShow" method="post">
+            <form name="cookingshow_form" commandName="CookingShowArticleReasonsVO" id="cookingshow_form" action="./addCookingShowArticle" method="post">
                 <h1 class="h3 mb-3 fw-normal">게시글 등록</h1>
                 <div class="row">
                     <div class="col-md-4">
@@ -94,7 +94,7 @@
                     </div>
                     <div class="col-md-4">
                         <div class="form-floating">
-                            <input type="text" name="id" value="${id}" class="form-control" id="floatingInput" placeholder="id" readonly>
+                            <input type="text" name="authorid" value="${id}" class="form-control" id="floatingInput" placeholder="id" readonly>
                             <label for="floatingInput">아이디</label>
                         </div>
 
@@ -103,8 +103,8 @@
                     <div class="col-md-4">
 
                         <div class="form-floating">
-                            <select name="category" class="form-control" id="floatingCategory">
-                                <option value="a">당을 낮추는 식단</option>
+                            <select name="categoryid" class="form-control" id="floatingCategory">
+                                <option value="a" selected>당을 낮추는 식단</option>
                                 <option value="b">저지방 식단</option>
                                 <option value="c">기분이 좋아지는 식단</option>
 
@@ -128,27 +128,27 @@
 						<!-- 추천이유 1 -->
 						<div class="form-floating reasons_wrapper" >
 						 	
-							<input type="text" name="reasons" id="reasons_1" class="form-control reasons" placeholder="추천이유를 적어주세요">
+							<input type="text" name="reasonsVOList[0].reasons" id="reasons_1" class="form-control reasons" placeholder="추천이유를 적어주세요">
 							<label for="reasons_1"> 추천 이유 1</label>
                         </div>
                         
                         <!-- 추천이유 2 -->
                         <div class="form-floating reasons_wrapper">
 						 	
-							<input type="text" name="reasons" id="reasons_2" class="form-control reasons"  placeholder="추천이유를 적어주세요">
+							<input type="text" name="reasonsVOList[1].reasons" id="reasons_2" class="form-control reasons"  placeholder="추천이유를 적어주세요">
 							<label for="reasons_2"> 추천 이유 2</label>
                         </div>
                         
                         <!-- 추천이유 3 -->
                         <div class="form-floating reasons_wrapper">
 						 	
-							<input type="text" name="reasons" id="reasons_3" class="form-control reasons" placeholder="추천이유를 적어주세요">
+							<input type="text" name="reasonsVOList[2].reasons" id="reasons_3" class="form-control reasons" placeholder="추천이유를 적어주세요">
 							<label for="reasons_3"> 추천 이유 3</label>
                         </div>
                         <!-- 추천이유 4 -->
                         <div class="form-floating reasons_wrapper">
 						 	
-							<input type="text" name="reasons" id="reasons_4" class="form-control reasons" placeholder="추천이유를 적어주세요">
+							<input type="text" name="reasonsVOList[3].reasons" id="reasons_4" class="form-control reasons" placeholder="추천이유를 적어주세요">
 							<label for="reasons_4"> 추천 이유 4</label>
                         </div>
 					</div>

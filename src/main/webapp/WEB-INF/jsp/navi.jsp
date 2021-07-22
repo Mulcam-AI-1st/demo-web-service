@@ -21,7 +21,7 @@
 
                     <c:choose>
                         <c:when test="${id eq null }">
-                            <a class="btn btn-sm btn-info" href="./SignIn">로그인</a> <span style="width: 10px"></span> 
+                            <a class="btn btn-sm btn-info" href="./SignIn?idx=0">로그인</a> <span style="width: 10px"></span> 
                         </c:when>
 
                         <c:otherwise>

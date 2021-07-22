@@ -1,5 +1,6 @@
 package com.teamproject.demo.vo;
 
+import java.util.ArrayList;
 import java.util.Date;
 
 public class CookingShowVO {
@@ -15,10 +16,12 @@ public class CookingShowVO {
 	private Date postdate;
 	private Date modifydate;
 	
+	private ArrayList<CookingShowReasonsVO> reasonsVOList = new ArrayList<CookingShowReasonsVO>();
+	
 	public CookingShowVO() {}
 
 	public CookingShowVO(int idx, String authorid, String categoryid, String title, String contents, String imageurl,
-			int recommendation, Date postdate, Date modifydate) {
+			int recommendation, Date postdate, Date modifydate, ArrayList<CookingShowReasonsVO> reasonsVOList) {
 		super();
 		this.idx = idx;
 		this.authorid = authorid;
@@ -29,6 +32,7 @@ public class CookingShowVO {
 		this.recommendation = recommendation;
 		this.postdate = postdate;
 		this.modifydate = modifydate;
+		this.reasonsVOList = reasonsVOList;
 	}
 
 	public int getIdx() {
@@ -103,6 +107,15 @@ public class CookingShowVO {
 		this.modifydate = modifydate;
 	}
 
+	public ArrayList<CookingShowReasonsVO> getReasonsVOList() {
+		return reasonsVOList;
+	}
+
+	public void setReasonsVOList(ArrayList<CookingShowReasonsVO> reasonsVOList) {
+		this.reasonsVOList = reasonsVOList;
+	}
+
+	
 	
 	
 	

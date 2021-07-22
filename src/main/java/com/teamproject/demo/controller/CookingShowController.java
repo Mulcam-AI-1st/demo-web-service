@@ -66,33 +66,30 @@ public class CookingShowController {
 	}
 
 	@RequestMapping(value = "/CookingShowDetail", method = RequestMethod.GET)
-	ModelAndView cookingshow_detail(@RequestParam(value = "idx", required = true) String idx, HttpServletResponse response) throws Exception {
+	ModelAndView cookingshow_detail(@RequestParam(value = "idx", required = true) String idx,
+			HttpServletResponse response) throws Exception {
 		ModelAndView modelAndView = new ModelAndView();
 		System.out.println("cookingshow_detail start" + idx);
-		
+
 		try {
-			
-		// 게시글 정보 가져오기 	
-		CookingShowVO cs = service.searchCookingShowById(idx);
-		
 
-		// 본문 추천이유 가져오기 
-		List<CookingShowDetailVO> csdList = service.searchCookingShowDetailById(idx);
-		
-		
-		// 커멘트 가져오기
-		List<CookingShowCommentsVO> cscList = service.searchCookingShowCommentsById(idx);
+			// 게시글 정보 가져오기
+			CookingShowVO cs = service.searchCookingShowById(idx);
 
-	
-		
-		modelAndView.addObject("cs", cs);
-		
-		modelAndView.addObject("csdList", csdList);
-		
-		modelAndView.addObject("cscList", cscList);
-				
-		modelAndView.setViewName("cookingshow_detail");
-		
+			// 본문 추천이유 가져오기
+			List<CookingShowDetailVO> csdList = service.searchCookingShowDetailById(idx);
+
+			// 커멘트 가져오기
+			List<CookingShowCommentsVO> cscList = service.searchCookingShowCommentsById(idx);
+
+			modelAndView.addObject("cs", cs);
+
+			modelAndView.addObject("csdList", csdList);
+
+			modelAndView.addObject("cscList", cscList);
+
+			modelAndView.setViewName("cookingshow_detail");
+
 		} catch (Exception e) {
 			e.printStackTrace();
 			modelAndView.addObject("err", "오류 발생");
@@ -101,56 +98,110 @@ public class CookingShowController {
 		}
 		return modelAndView;
 	}
-	
+
 	@RequestMapping(value = "/addCookingShowComments", method = RequestMethod.POST)
 	ModelAndView addCookingShowComments(@ModelAttribute("csc") CookingShowCommentsVO csc) throws Exception {
-		
+
 		System.out.println("addCookingShowComments start");
 		ModelAndView modelAndView = new ModelAndView();
-		
+
 		try {
 			service.addCookingShowComments(csc);
 			modelAndView.addObject("csc", csc);
-			modelAndView.setViewName("redirect:./CookingShowDetail?idx="+csc.getIdx());
-		
+			modelAndView.setViewName("redirect:./CookingShowDetail?idx=" + csc.getIdx());
+
 		} catch (Exception e) {
 			e.printStackTrace();
 			modelAndView.addObject("err", "오류 발생");
 			modelAndView.setViewName("error");
-			
+
 		}
 		return modelAndView;
 	}
 	
-	
-	@RequestMapping(value = "/addCookingShow", method = RequestMethod.GET)
-	public String addddcookingshow_detail() throws Exception {
-		return "addCookingShow";
+	@RequestMapping(value="/addCookingShowArticle", method = RequestMethod.GET)
+    public String addCookingShowArticle() throws Exception {
+    	
+    	return "addCookingShow";
+    }
+    
+
+	@RequestMapping(value = "/addCookingShowArticle", method = RequestMethod.POST)
+	ModelAndView addCookingShowArticle(@ModelAttribute CookingShowVO cs) throws Exception {
+		System.out.println("addCookingShowArticle start");
+		ModelAndView modelAndView = new ModelAndView();
+
+		// 게시글의 index 번호를 조회온다.
+		int currentIdx = service.searchCurrentIdx();
+
+		cs.setIdx(currentIdx+1);
+
+		System.out.println("idx " + cs.getIdx());
+		System.out.println("authorid " + cs.getAuthorid());
+		System.out.println("categoryid " + cs.getCategoryid());
+		System.out.println("title " + cs.getTitle());
+		System.out.println("contents " + cs.getContents());
+		System.out.println("imageurl " + cs.getImageurl()) ;
+		
+		
+		System.out.println("reasons size" + cs.getReasonsVOList().size()) ;
+		
+		// 추천 이유 리슽트에 게시글 번호와 추천이유 인덱스 번호 추가
+		
+
+		
+		for (int i = 0; i < cs.getReasonsVOList().size() ; i++) {
+			
+			cs.getReasonsVOList().get(i).setIdx(currentIdx+1);
+			
+			cs.getReasonsVOList().get(i).setRidx(i + 1);
+			
+			System.out.println("getReasonsVOList 반복문");
+			System.out.println("idx " + cs.getReasonsVOList().get(i).getIdx());
+		    System.out.println("ridx " + cs.getReasonsVOList().get(i).getRidx());
+		    System.out.println("reasons " + cs.getReasonsVOList().get(i).getReasons());
+		    System.out.println("");
+		}
+
+		try {
+			// 게시글 메인 먼저 입력
+			service.addCookingShowMain(cs);
+
+			// 게시글 상세 나중에 입력
+			service.addCookingShowDetail(cs);
+
+			modelAndView.setViewName("cookingshow");
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			modelAndView.addObject("err", "오류 발생");
+			modelAndView.setViewName("error");
+
+		}
+
+		return modelAndView;
 	}
 
 	@RequestMapping(value = "/CookingShowRecommendation", method = RequestMethod.GET)
-	void cookignshowrecommendation(@RequestParam(value = "idx", required = true) String idx, HttpServletResponse response) throws Exception {
-		
-	
+	void cookignshowrecommendation(@RequestParam(value = "idx", required = true) String idx,
+			HttpServletResponse response) throws Exception {
+
 		service.addRecommendation(idx);
-		
+
 		String recommendationCnt = service.searchRecommendation(idx);
-		
-		PrintWriter out= response.getWriter();
-		
+
+		PrintWriter out = response.getWriter();
+
 		DecimalFormat decFormat = new DecimalFormat("###,###");
 
 		String recommendationCntStr = decFormat.format(Integer.parseInt(recommendationCnt));
-		 
+
 		out.append(recommendationCntStr);
 
 		out.flush();
 		out.close();
 		System.out.println("CookingShowRecommendation start" + idx);
-	
-		
-	}	
 
-	
-	
+	}
+
 }

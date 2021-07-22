@@ -4,8 +4,7 @@
 
 <mapper namespace="com.teamproject.demo.dao.CookingShowDAO">
 
-	<select id="selectAllArticle"
-		resultType="CookingShowVO">
+	<select id="selectAllArticle" resultType="CookingShowVO">
 
             <![CDATA[
             SELECT  cs.idx as idx, 
@@ -26,10 +25,9 @@
      
             ]]>
 	</select>
-	
-	
-	<update id="updateRecommendation"
-		parameterType="String">
+
+
+	<update id="updateRecommendation" parameterType="String">
 
             <![CDATA[
             UPDATE  jtb_cookingshow_main
@@ -40,9 +38,8 @@
      
             ]]>
 	</update>
-	
-	<select id="selectRecommendationById"
-		parameterType="String"
+
+	<select id="selectRecommendationById" parameterType="String"
 		resultType="String">
 
             <![CDATA[
@@ -53,10 +50,9 @@
  
             ]]>
 	</select>
-	
-	
-	<select id="selectArticleById"
-		parameterType="String"
+
+
+	<select id="selectArticleById" parameterType="String"
 		resultType="CookingShowVO">
 
             <![CDATA[
@@ -78,10 +74,9 @@
  
             ]]>
 	</select>
-	
-	
-	<select id="selectArticleDetailById"
-		parameterType="String"
+
+
+	<select id="selectArticleDetailById" parameterType="String"
 		resultType="CookingShowDetailVO">
 
             <![CDATA[
@@ -92,11 +87,10 @@
  
             ]]>
 	</select>
-	
-	
-	
-	<select id="selectArticleCommentsById"
-		parameterType="String"
+
+
+
+	<select id="selectArticleCommentsById" parameterType="String"
 		resultType="CookingShowCommentsVO">
 
             <![CDATA[
@@ -115,8 +109,8 @@
  
             ]]>
 	</select>
-	
-	
+
+
 	<insert id="insertComments"
 		parameterType="CookingShowCommentsVO">
 
@@ -140,7 +134,66 @@
  
             ]]>
 	</insert>
+
+
+	<select id="selectMaxIdx" resultType="int">
+		<![CDATA[
+			select 	max(idx)
+			from 	JTB_COOKINGSHOW_MAIN
+		
+		]]>
+	</select>
+
+
+	<insert id="insertArticleMain" parameterType="CookingShowVO">
+
+            <![CDATA[
+            INSERT INTO 
+            	JTB_COOKINGSHOW_MAIN (
+            		idx, 
+            		authorid, 
+            		categoryid, 
+            		title, 
+            		contents, 
+            		imageurl, 
+            		postdate
+            		) 
+           		VALUES (
+           			#{idx}, 
+           			#{authorid},
+           			#{categoryid},
+           			#{title},
+           			#{contents},
+           			#{imageurl},
+           			sysdate
+           			)
+ 
+            ]]>
+	</insert>
+
+
+	<insert id="insertArticleDetail"
+		parameterType="CookingShowReasonsVO">
+          <![CDATA[
+   
+            INSERT INTO 
+            	JTB_COOKINGSHOW_DETAIL (
+				    idx, 
+				    ridx, 
+				    reasons
+					) 
+				VALUES 
+
+				(
+				    #{idx},
+	    		    #{ridx},
+				    #{reasons}
+				    )
 	
+	    ]]>			    
+ 		
+	</insert>
+
 
 
 
