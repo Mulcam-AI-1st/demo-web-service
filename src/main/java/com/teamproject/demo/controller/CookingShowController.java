@@ -97,6 +97,7 @@ public class CookingShowController {
 
 		} catch (Exception e) {
 			e.printStackTrace();
+			
 			modelAndView.addObject("err", "오류 발생");
 
 			modelAndView.setViewName("error");

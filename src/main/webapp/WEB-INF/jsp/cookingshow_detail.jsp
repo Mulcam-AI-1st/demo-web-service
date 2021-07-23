@@ -31,12 +31,12 @@
 </style>
 <script type="text/javascript">
     $(function() { editormd.markdownToHTML("editormd-view", {
-                   htmlDecode      : true,
+                   /* htmlDecode      : true,
                    emoji           : true,
                    taskList        : true,
                    tex             : true,  
                    flowChart       : true,  
-                   sequenceDiagram : true, 
+                   sequenceDiagram : true,  */
             });
     });
 </script>
@@ -161,9 +161,7 @@ $(document).ready(function() {
                 
                 <!--  본문 시작 -->
             		<div id="editormd-view">
-	                <textarea style="display:none;">
-						${cs.contents}
-                    </textarea>          
+	                <textarea style="display:none;">${cs.contents}</textarea>          
         		    </div>
 				<!-- 본문 끝 -->
 				

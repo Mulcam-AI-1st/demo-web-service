@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+ <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+    
 <jsp:include page="./header.jsp" ></jsp:include>
 
     <!-- Bootstrap core CSS -->
@@ -21,9 +24,20 @@
       }
     </style>
 
+<script>
+
+function pickedIDX(articleId) {
+            //alert("와따");
+            location.href = "./HealthyDietDetail?idx="+articleId;
+    };
+
+</script>
     
 <jsp:include page="./navi.jsp" ></jsp:include>
 
+<!--  가로 출력 개수 지정  -->
+<c:set var="i" value="0" />
+<c:set var="j" value="3" />
 
 <main>
 
@@ -33,7 +47,8 @@
         <h1 class="fw-light">현대인 필수 건강 식단</h1>
         <p class="lead text-muted">조경석 박사가 추천하는 건강식단</p>
         <p>
-          <a href="#" class="btn btn-primary my-2">당을 낮추는 저당식단</a>
+         <a href="#" class="btn btn-primary my-2">모든 건강 식단</a> 
+          <a href="#" class="btn btn-secondary my-2">당을 낮추는 저당식단</a>
           <a href="#" class="btn btn-secondary my-2">고지혈에 좋은 저지방 식단</a>
           <a href="#" class="btn btn-secondary my-2">혈압을 낮추는 차분해 식단</a>
         </p>
@@ -56,105 +71,62 @@
 	  
 	    <div class="album py-5 bg-light">
 			    <div class="container">
-			
+				
+				<!-- 게시글 반복문 시작 	 -->
 			      <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-			        <div class="col">
-			          <div class="card shadow-sm">
-						<img src="./lib/images/lowsugar01.jpg" width="100%" height="225" onclick="javascript:location.href='./HealthyDietDetail'"/>
-			            <div class="card-body">
-			              <p class="card-text">차조밥,조개국,불고기,시금치나물,배추김치</p>
-			              <div class="d-flex justify-content-between align-items-center">
-			                <div class="btn-group">
-			                  <button type="button" class="btn btn-sm btn-outline-secondary">당을 낮추는 저당식단 </button>
-			                  <button type="button" class="btn btn-sm btn-outline-secondary" onclick="javascript:location.href='./HealthyDietDetail'">자세히 보기</button>
-			                </div>
-			                <small class="text-muted">9 mins</small>
-			              </div>
-			            </div>
-			          </div>
-			        </div>
-			        <div class="col">
-			          <div class="card shadow-sm">
-									<img src="./lib/images/lowsugar02.jpg" width="100%" height="225" onclick="javascript:location.href='./HealthyDietDetail'"/>
-			
-			            <div class="card-body">
-			            <p class="card-text">보리밥,김치찌개,잡채,김구이,오이생채,깍두기</p>
-			              <div class="d-flex justify-content-between align-items-center">
-			                <div class="btn-group">
-			                   <button type="button" class="btn btn-sm btn-outline-secondary">당을 낮추는 저당식단 </button>
-			                  <button type="button" class="btn btn-sm btn-outline-secondary" onclick="javascript:location.href='./HealthyDietDetail'">자세히 보기</button>
-			                </div>
-			                <small class="text-muted">9 mins</small>
-			              </div>
-			            </div>
-			          </div>
-			        </div>
-			        <div class="col">
-			          <div class="card shadow-sm">
-			<img src="./lib/images/lowfat01.jpg" width="100%" height="225" onclick="javascript:location.href='./HealthyDietDetail'"/>
-			            <div class="card-body">
-			              <p class="card-text">현미밥,냉이된장국,임연수구이,두부조림,마늘쫑무침,배추김치</p>
-			              <div class="d-flex justify-content-between align-items-center">
-			                <div class="btn-group">
-			                   <button type="button" class="btn btn-sm btn-outline-secondary">고지혈에 좋은 저지방 식단 </button>
-			                  <button type="button" class="btn btn-sm btn-outline-secondary" onclick="javascript:location.href='./HealthyDietDetail'">자세히 보기</button>
-			                </div>
-			                <small class="text-muted">9 mins</small>
-			              </div>
-			            </div>
-			          </div>
-			        </div>
-			
-			        <div class="col">
-			          <div class="card shadow-sm">
-									<img src="./lib/images/lowfat02.jpg" width="100%" height="225" onclick="javascript:location.href='./HealthyDietDetail'"/>
-			
-			            <div class="card-body">
-			              <p class="card-text">	수수밥,근대국,삼치간장조림,취나물볶음,총각김치</p>
-			              <div class="d-flex justify-content-between align-items-center">
-			                <div class="btn-group">
-			                   <button type="button" class="btn btn-sm btn-outline-secondary">고지혈에 좋은 저지방 식단 </button>
-			                  <button type="button" class="btn btn-sm btn-outline-secondary" onclick="javascript:location.href='./HealthyDietDetail'">자세히 보기</button>
-			                </div>
-			                <small class="text-muted">9 mins</small>
-			              </div>
-			            </div>
-			          </div>
-			        </div>
-			        <div class="col">
-			          <div class="card shadow-sm">
-									<img src="./lib/images/lowsugar01.jpg" width="100%" height="225"/>
-			
-			            <div class="card-body">
-			              <p class="card-text">차조밥,콩나물국,달걀채소말이,마늘쫑건새우볶음,감자조림,배추김치</p>
-			              <div class="d-flex justify-content-between align-items-center">
-			                <div class="btn-group">
-			                   <button type="button" class="btn btn-sm btn-outline-secondary">혈압을 낮추는 차분해 식단 </button>
-			                  <button type="button" class="btn btn-sm btn-outline-secondary" onclick="javascript:location.href='./HealthyDietDetail'">자세히 보기</button>
-			                </div>
-			                <small class="text-muted">9 mins</small>
-			              </div>
-			            </div>
-			          </div>
-			        </div>
-			        <div class="col">
-			          <div class="card shadow-sm">
-									<img src="./lib/images/lowsugar02.jpg" width="100%" height="225" onclick="javascript:location.href='./HealthyDietDetail'"/>
-			
-			            <div class="card-body">
-			              <p class="card-text">김치볶음밥,무국,고추멸치볶음,감자샐러드,나박김치</p>
-			              <div class="d-flex justify-content-between align-items-center">
-			                <div class="btn-group">
-			                   <button type="button" class="btn btn-sm btn-outline-secondary">혈압을 낮추는 차분해 식단 </button>
-			                  <button type="button" class="btn btn-sm btn-outline-secondary" onclick="javascript:location.href='./HealthyDietDetail'">자세히 보기</button>
-			                </div>
-			                <small class="text-muted">9 mins</small>
-			              </div>
-			            </div>
-			          </div>
-			        </div>
-			
+			      
+			      <c:forEach items="${hdList}" var="List" varStatus="status">
+
+                        <c:if test="${i%j == 0 }">
+
+                            <br>
+
+                        </c:if>
+			      <div class="col">
+                            <div class="card shadow-sm">
+                                <img src="${List.imageurl}" width="100%" height="225" onclick="javascript:location.href='./HealthyDietDetail?idx=${List.idx}'" />
+                                <div class="card-body">
+
+                                    <p class="card-text" onclick="javascript:location.href='./HealthyDietDetail?idx=${List.idx}'">${List.title}  </p>
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <div class="btn-group">
+                                            <button type="button" class="btn btn-sm btn-outline-secondary">${List.categoryid}</button>
+
+                                            <button type="button" class="btn btn-sm btn-outline-secondary"   onclick="javascript:pickedIDX(${List.idx});" >
+                                                		자세히 보기
+                                            </button>
+                                            
+                                        </div>
+                                        <small class="text-muted">
+                                            <fmt:formatDate value="${List.postdate}" pattern="yyyy.MM.dd" />
+                                            <c:choose>
+                                                <c:when test="${List.modifydate ne null }">
+                                                    (
+                                                    <fmt:formatDate value="${List.modifydate}" pattern="yyyy.MM.dd" />)
+                                                </c:when>
+                                            </c:choose>
+
+
+                                        </small>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <c:if test="${i%j == j-1 }">
+
+                            <br>
+
+                        </c:if>
+
+                        <c:set var="i" value="${i+1 }" />
+
+                    </c:forEach>
 			      </div>
+			      <!--  게시글 반복문 끝 	 -->
+			      
+			      	
 			    </div>
 			  </div>
 	  </div> <!-- 앨범 형태 추천  식단	   -->

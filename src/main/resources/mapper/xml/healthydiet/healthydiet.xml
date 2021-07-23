@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.teamproject.demo.dao.HealthyDietDAO">
+
+	<select id="selectAllArticle" resultType="HealthyDietVO">
+
+ 			<![CDATA[
+ 					SELECT
+					    hd.idx,
+					    cd.value as categoryid,
+					    hd.title,
+					    hd.contents,
+					    hd.imageurl,
+					    hd.postdate,
+					    hd.modifydate
+					    
+					FROM
+					    jtb_healthydiet_main hd,
+					    jtb_code cd
+					Where hd.categoryid = cd.code
+					  and cd.category='diet_division'
+					    
+					Order by  POSTDATE desc
+ 			  ]]>
+            
+     </select>
+
+
+	<select id="selectArticleById" parameterType="String" resultType="HealthyDietVO">
+			
+			<![CDATA[
+ 					SELECT
+					    hd.idx,
+					    cd.value as categoryid,
+					    hd.title,
+					    hd.contents,
+					    hd.imageurl,
+					    hd.postdate,
+					    hd.modifydate
+					    
+					FROM
+					    jtb_healthydiet_main hd,
+					    jtb_code cd
+					Where hd.categoryid = cd.code
+					  and cd.category='diet_division'
+					  and hd.idx=#{idx}
+ 			  ]]>
+	
+	</select>
+
+</mapper>
