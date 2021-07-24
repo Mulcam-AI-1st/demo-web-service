@@ -37,7 +37,8 @@
 					    hd.contents,
 					    hd.imageurl,
 					    hd.postdate,
-					    hd.modifydate
+					    hd.modifydate,
+					    hd.NUTRIENTS
 					    
 					FROM
 					    jtb_healthydiet_main hd,
@@ -48,5 +49,30 @@
  			  ]]>
 	
 	</select>
+	
+	<select id="selectArticleDetailById" parameterType="String" resultType="HealthyDietDetailVO">
+			
+			<![CDATA[
+ 					SELECT
+				    hd.idx,
+				    hd.compositionno,
+				    hd.cid,
+				    hc.title,
+				    hc.recipe,
+				    hc.ingredients
+				FROM
+				    jtb_healthydiet_detail hd,
+				    jtb_healthydiet_compositions hc
+			    where     
+			    	hd.cid = hc.cid
+			    	and hd.idx=#{idx}
+			    order by hd.COMPOSITIONNO
+ 			  ]]>
+	
+	</select>
+	
+	
+	
+	
 
 </mapper>

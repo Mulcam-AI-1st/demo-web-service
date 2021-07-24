@@ -11,11 +11,12 @@ public class HealthyDietVO {
 	private String imageurl;
 	private Date postdate;
 	private Date modifydate;
+	private String nutrients;
 	
-	public HealthyDietVO() {};
-	
+	public HealthyDietVO() {}
+
 	public HealthyDietVO(int idx, String categoryid, String title, String contents, String imageurl, Date postdate,
-			Date modifydate) {
+			Date modifydate, String nutrients) {
 		super();
 		this.idx = idx;
 		this.categoryid = categoryid;
@@ -24,6 +25,7 @@ public class HealthyDietVO {
 		this.imageurl = imageurl;
 		this.postdate = postdate;
 		this.modifydate = modifydate;
+		this.nutrients = nutrients;
 	}
 
 	public int getIdx() {
@@ -81,7 +83,14 @@ public class HealthyDietVO {
 	public void setModifydate(Date modifydate) {
 		this.modifydate = modifydate;
 	}
-	
+
+	public String getNutrients() {
+		return nutrients;
+	}
+
+	public void setNutrients(String nutrients) {
+		this.nutrients = nutrients;
+	};
 	
 	
 

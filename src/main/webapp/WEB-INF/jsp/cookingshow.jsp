@@ -34,7 +34,6 @@ function pickedIDX(articleId) {
           dataType: "text",
           url: "./CookingShowRecommendation",
           data: { idx : articleId  },
-          dataType :"text", // 데이터타입을 text 으로 받아옴
 
           // 전송 전 작업
           beforeSend: function() {},
