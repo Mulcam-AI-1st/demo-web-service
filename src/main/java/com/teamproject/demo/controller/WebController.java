@@ -1,12 +1,28 @@
 package com.teamproject.demo.controller;
 
+import java.util.Random;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
+
+import com.teamproject.demo.service.CookingShowServiceImpl;
+import com.teamproject.demo.service.HealthyDietServiceImpl;
+import com.teamproject.demo.vo.CookingShowVO;
+import com.teamproject.demo.vo.HealthyDietVO;
 
 @Controller
 public class WebController {
+
+	
+	@Autowired
+	HealthyDietServiceImpl serviceHD;
+	@Autowired
+	CookingShowServiceImpl serviceCS;
 
 	/**
      * Jsp 호출 
@@ -15,10 +31,42 @@ public class WebController {
      * @throws Exception
      */
 
-    @RequestMapping("/")
-    public String index() throws Exception {
-        return "index";
-    }
+	//메인 페이지 - 랜덤 1개 불러오기
+			// idx의 max를 불러와 random 함수를 돌린다.
+	@GetMapping("/")
+	public ModelAndView healthydietrandom() {
+		ModelAndView mav = new ModelAndView();
+		
+		System.out.println("건강식단 1개 불러오기");
+		
+		//건강식단 1개 불러오기
+		Random random = new Random();
+		
+		int currentIdxHD = serviceHD.searchHealthyDietMaxIdx();
+		int targetIdxHD = random.nextInt(currentIdxHD)+1;
+		System.out.println("HealthyDietRandom targetIdx " + targetIdxHD);
+		
+		HealthyDietVO randomIdxHD = serviceHD.searchHealthyDietById(Integer.toString(targetIdxHD));
+	    mav.addObject("randomIdxHD", randomIdxHD);
+	    
+	    System.out.println("추천메뉴 1개 불러오기");
+	    
+	    //추천메뉴 1개 불러오기
+	    int currentIdxCS = serviceCS.searchCurrentIdx();
+	    int targetIdxCS = random.nextInt(currentIdxCS)+1;
+	    System.out.println("HealthyDietRandom targetIdxCS " + targetIdxCS);
+	    
+	    CookingShowVO randomIdxCS = serviceCS.searchCookingShowById(Integer.toString(targetIdxCS));
+	    mav.addObject("randomIdxCS", randomIdxCS) ;
+	    mav.setViewName("index");
+		return mav;
+	}
+		
+		
+		
+		//메인페이지 - 최신글 6개 불러오기
+			// order by posted desc	
+		
     
     @RequestMapping("/info")
     public String info() throws Exception {

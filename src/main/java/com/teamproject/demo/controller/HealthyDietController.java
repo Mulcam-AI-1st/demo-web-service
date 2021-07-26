@@ -51,16 +51,16 @@ public class HealthyDietController {
 		try {
 			// 게시글 기본 정보 가져오기
 			HealthyDietVO hd = service.searchHealthyDietById(idx);
-			System.out.println("");
-			System.out.println("건강식단 상세  getIdx :: " + hd.getIdx());
-			System.out.println("건강식단 상세  getCategoryid :: " + hd.getCategoryid());
-			System.out.println("건강식단 상세  getCategoryname :: " + hd.getCategoryname());
-			System.out.println("건강식단 상세  getTitle :: " + hd.getTitle());
-			System.out.println("건강식단 상세  getDescription :: " + hd.getDescription());
-			System.out.println("건강식단 상세  getContentno :: " + hd.getContentno());
-			System.out.println("건강식단 상세  getImageurl  :: " + hd.getImageurl());
-			System.out.println("건강식단 상세  getPostdate :: " + hd.getPostdate());
-			System.out.println("");
+//			System.out.println("");
+//			System.out.println("건강식단 상세  getIdx :: " + hd.getIdx());
+//			System.out.println("건강식단 상세  getCategoryid :: " + hd.getCategoryid());
+//			System.out.println("건강식단 상세  getCategoryname :: " + hd.getCategoryname());
+//			System.out.println("건강식단 상세  getTitle :: " + hd.getTitle());
+//			System.out.println("건강식단 상세  getDescription :: " + hd.getDescription());
+//			System.out.println("건강식단 상세  getContentno :: " + hd.getContentno());
+//			System.out.println("건강식단 상세  getImageurl  :: " + hd.getImageurl());
+//			System.out.println("건강식단 상세  getPostdate :: " + hd.getPostdate());
+//			System.out.println("");
 			
 			
 				// 식단을 구성하는 요리들의 상세정보 가져오기 
@@ -68,48 +68,48 @@ public class HealthyDietController {
 				//   - 식단이 가지고 있는 요리의 cntntsNo 만큼 for 문을 돌며 정보를 가져와야 한다.	
 				ArrayList<OpenApiRecomendDietDtlVO>  foodVOList   = healthyDietRecomendDietDtl(hd.getContentno()) ;
 				
-				for ( OpenApiRecomendDietDtlVO food : foodVOList) {
-					System.out.println("");
-					System.out.println("컨텐츠 번호 : " + food.getCntntsNo()      );
-					System.out.println("식단 상세명 : " +  food.getDietDtlNm()      );
-
-					System.out.println("음식 정보 : " +food.getFdInfo()      );
-					System.out.println("식단 영양소 정보 : " +food.getDietNtrsmallInfo()      );
-					
-					System.out.println("음식 컨텐츠 번호 : " +food.getFdCntntsNo()      );
-					System.out.println("음식 명 : " +food.getFdNm()      );
-					
-					
-					System.out.println("재료 정보 : " +food.getMatrlInfo()      );
-					
-					
-				
-					System.out.println("조리 방법 정보 : " +food.getCkngMthInfo()      );
-					food.setCkngMthInfo(    food.getCkngMthInfo().replaceAll("\n", "<br>") ) ;
-					
-					
-					System.out.println("섭취 량 정보 : " +food.getNtkQyInfo()      );
-
-					System.out.println("당질 정보  : " + food.getCrbhInfo()    );
-					System.out.println("칼로리 정보  : " + food.getClriInfo()    );
-					System.out.println("단백질 정보  : " + food.getProtInfo()    );
-					System.out.println("지질 정보  : " + food.getNtrfsInfo()    );
-					System.out.println("콜레스테롤 정보  : " + food.getChlsInfo()    );
-					System.out.println("조섬요 정보  : " + food.getCrfbInfo()    );
-					System.out.println(" 칼슘 정보 : " + food.getClciInfo()    );
-					System.out.println("철분 정보  : " + food.getIrcnInfo()    );
-					System.out.println("나트륨 정보  : " + food.getNaInfo()    );
-					System.out.println("식염 상당량 정보  : " + food.getFrmlasaltEqvlntqyInfo()    );
-					System.out.println("비타민 정보 A  : " + food.getVtmaInfo()    );
-					System.out.println("비타민 정보 B  : " + food.getVtmbInfo()    );
-					System.out.println("비타민 정보 C  : " + food.getVtmcInfo()    );
-					
-					System.out.println("컨텐츠 제목  : " + food.getCntntsSj()    );
-					
-					System.out.println("이미지 설명 : " +food.getRtnImageDc()  );
-					System.out.println("");
-					
-				}
+//				for ( OpenApiRecomendDietDtlVO food : foodVOList) {
+//					System.out.println("");
+//					System.out.println("컨텐츠 번호 : " + food.getCntntsNo()      );
+//					System.out.println("식단 상세명 : " +  food.getDietDtlNm()      );
+//
+//					System.out.println("음식 정보 : " +food.getFdInfo()      );
+//					System.out.println("식단 영양소 정보 : " +food.getDietNtrsmallInfo()      );
+//					
+//					System.out.println("음식 컨텐츠 번호 : " +food.getFdCntntsNo()      );
+//					System.out.println("음식 명 : " +food.getFdNm()      );
+//					
+//					
+//					System.out.println("재료 정보 : " +food.getMatrlInfo()      );
+//					
+//					
+//				
+//					System.out.println("조리 방법 정보 : " +food.getCkngMthInfo()      );
+//					food.setCkngMthInfo(    food.getCkngMthInfo().replaceAll("\n", "<br>") ) ;
+//					
+//					
+//					System.out.println("섭취 량 정보 : " +food.getNtkQyInfo()      );
+//
+//					System.out.println("당질 정보  : " + food.getCrbhInfo()    );
+//					System.out.println("칼로리 정보  : " + food.getClriInfo()    );
+//					System.out.println("단백질 정보  : " + food.getProtInfo()    );
+//					System.out.println("지질 정보  : " + food.getNtrfsInfo()    );
+//					System.out.println("콜레스테롤 정보  : " + food.getChlsInfo()    );
+//					System.out.println("조섬요 정보  : " + food.getCrfbInfo()    );
+//					System.out.println(" 칼슘 정보 : " + food.getClciInfo()    );
+//					System.out.println("철분 정보  : " + food.getIrcnInfo()    );
+//					System.out.println("나트륨 정보  : " + food.getNaInfo()    );
+//					System.out.println("식염 상당량 정보  : " + food.getFrmlasaltEqvlntqyInfo()    );
+//					System.out.println("비타민 정보 A  : " + food.getVtmaInfo()    );
+//					System.out.println("비타민 정보 B  : " + food.getVtmbInfo()    );
+//					System.out.println("비타민 정보 C  : " + food.getVtmcInfo()    );
+//					
+//					System.out.println("컨텐츠 제목  : " + food.getCntntsSj()    );
+//					
+//					System.out.println("이미지 설명 : " +food.getRtnImageDc()  );
+//					System.out.println("");
+//					
+//				}
 
 			modelAndView.addObject("hd", hd);
 			modelAndView.addObject("foodVOList", foodVOList);
@@ -159,7 +159,7 @@ public class HealthyDietController {
 						System.out.println(diet.getRtnImageDc().lastIndexOf("/"));
 						System.out.println(ImageUrl);
 					diet.setImageurl(ImageUrl)   ; 
-					service.copyHealthyDietMain(diet);
+					//service.copyHealthyDietMain(diet);
 					
 					System.out.println(idx+1);
 					System.out.println(diet.getCntntsNo());

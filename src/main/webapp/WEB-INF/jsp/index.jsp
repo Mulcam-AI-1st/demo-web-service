@@ -1,5 +1,20 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
+<script>
+    function pickedIdxHD(articleId) {
+        //alert("와따");
+        location.href = "./HealthyDietDetail?idx=" + articleId;
+    };
+
+    function pickedIdxCS(articleId) {
+        //alert("와따");
+        location.href = "./CookingShowRecommendation?idx=" + articleId;
+    };
+
+</script>
 
 <jsp:include page="./header.jsp"></jsp:include>
 <jsp:include page="./navi.jsp"></jsp:include>
@@ -59,34 +74,66 @@
         <div class="row">
             <!--  첫화면 / Featured 추천식단  -->
             <div class="row mb-2">
+            
+            
                 <div class="col-md-6">
                     <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
                         <div class="col p-4 d-flex flex-column position-static">
                             <strong class="d-inline-block mb-2 text-primary">건강식단</strong>
-                            <h3 class="mb-0">당을 낮추는 식단</h3>
-                            <div class="mb-1 text-muted">Nov 12</div>
-                            <p class="card-text mb-auto">This is a wider card with supporting text below as a natural lead-in to additional content.</p>
-                            <a href="#" class="stretched-link">Continue reading</a>
+                            <h3 class="mb-0">${randomIdxHD.categoryname}</h3>
+                            <div class="mb-1 text-muted">
+                                <fmt:formatDate value="${randomIdxHD.postdate}" pattern="yyyy.MM.dd" />
+                                <c:choose>
+                                    <c:when test="${randomIdxHD.modifydate ne null }">
+                                        (
+                                        <fmt:formatDate value="${randomIdxHD.modifydate}" pattern="yyyy.MM.dd" />)
+                                    </c:when>
+                                </c:choose>
+
+
+                            </div>
+                            <p class="card-text mb-auto">${randomIdxHD.title} </p>
+                            <button type="button" class="btn btn-sm btn-outline-secondary" onclick="javascript:pickedIdxHD(${randomIdxHD.idx});">
+                                자세히 보기
+                            </button>
+
                         </div>
                         <div class="col-auto d-none d-lg-block">
-                            <img src="./lib/images/featured01.jpg" width="200" height="250" />
+                            <img src="${randomIdxHD.imageurl}" width="300px;" height="250px;"/>
                         </div>
                     </div>
                 </div>
+                
+                
+                
                 <div class="col-md-6">
                     <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
                         <div class="col p-4 d-flex flex-column position-static">
                             <strong class="d-inline-block mb-2 text-success">요리자랑</strong>
-                            <h3 class="mb-0">김지영님 "당을 낮추는 식단"</h3>
-                            <div class="mb-1 text-muted">Nov 11</div>
-                            <p class="mb-auto">This is a wider card with supporting text below as a natural lead-in to additional content.</p>
-                            <a href="#" class="stretched-link">Continue reading</a>
+                            <h3 class="mb-0">${randomIdxCS.authorid} 님 "${randomIdxCS.categoryid}" </h3>
+                            <div class="mb-1 text-muted">
+                                <fmt:formatDate value="${randomIdxCS.postdate}" pattern="yyyy.MM.dd" />
+                                <c:choose>
+                                    <c:when test="${randomIdxCS.modifydate ne null }">
+                                        (
+                                        <fmt:formatDate value="${randomIdxCS.modifydate}" pattern="yyyy.MM.dd" />)
+                                    </c:when>
+                                </c:choose>
+                            </div>
+                            <p class="mb-auto">${randomIdxCS.title}</p>
+                            <button type="button" class="btn btn-sm btn-outline-secondary" onclick="javascript:pickedIdxCS(${randomIdxCS.idx});">
+                                자세히 보기
+                            </button>
                         </div>
                         <div class="col-auto d-none d-lg-block">
-                            <img src="./lib/images/featured02.jpg" width="200" height="250" />
+                            <img src="${randomIdxCS.imageurl}" width="300px;" height="250px;"/>
                         </div>
                     </div>
                 </div>
+                
+                
+                
+                
             </div>
         </div>
         <div class="row" style="height:50px;"></div><!-- 공백  -->
