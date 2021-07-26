@@ -8,9 +8,11 @@
  			<![CDATA[
  					SELECT
 					    hd.idx,
-					    cd.value as categoryid,
+					    hd.categoryid,
+					    cd.value as categoryname,
 					    hd.title,
-					    hd.contents,
+					     hd.description,
+					    hd.contentno,
 					    hd.imageurl,
 					    hd.postdate,
 					    hd.modifydate
@@ -23,56 +25,76 @@
 					    
 					Order by  POSTDATE desc
  			  ]]>
-            
-     </select>
+
+	</select>
 
 
-	<select id="selectArticleById" parameterType="String" resultType="HealthyDietVO">
+	<select id="selectArticleById" parameterType="String"
+		resultType="HealthyDietVO">
 			
 			<![CDATA[
  					SELECT
-					    hd.idx,
-					    cd.value as categoryid,
-					    hd.title,
-					    hd.contents,
-					    hd.imageurl,
-					    hd.postdate,
-					    hd.modifydate,
-					    hd.NUTRIENTS
-					    
+					    jm.idx,
+					    jm.categoryid,
+					    jc.value as categoryname,
+					    jm.title,
+					    jm.description,
+					    jm.contentno,
+					    jm.imageurl,
+					    jm.postdate,
+					    jm.modifydate
 					FROM
-					    jtb_healthydiet_main hd,
-					    jtb_code cd
-					Where hd.categoryid = cd.code
-					  and cd.category='diet_division'
-					  and hd.idx=#{idx}
+					    jtb_code jc,
+					    jtb_healthydiet_main jm
+				    where jm.categoryid = jc.code
+					  and jc.category='diet_division'
+					  and jm.idx=#{idx}
  			  ]]>
-	
+
 	</select>
+
 	
-	<select id="selectArticleDetailById" parameterType="String" resultType="HealthyDietDetailVO">
+	<insert id="insertHealthyDietMain"
+		parameterType="OpenApiRecomendDietVO">
+	<![CDATA[
+	
+	INSERT INTO jtb_healthydiet_main (
+				    idx,
+				    categoryid,
+				    title,
+				    description,
+				    contentno,
+				    imageurl,
+				    postdate,
+				    modifydate
+				) VALUES (
+				    #{idx},
+				    #{dietSeCode},
+				    #{cntntsSj},
+				    null,
+				    #{cntntsNo},
+				    #{imageurl},
+				    sysdate,
+				    null
+				)
+	
+	
+	]]>
+
+	</insert>
+
+	<select id="selectHealthyDietIdxMax" resultType="int">
 			
 			<![CDATA[
  					SELECT
-				    hd.idx,
-				    hd.compositionno,
-				    hd.cid,
-				    hc.title,
-				    hc.recipe,
-				    hc.ingredients
+				    max(IDX)
 				FROM
-				    jtb_healthydiet_detail hd,
-				    jtb_healthydiet_compositions hc
-			    where     
-			    	hd.cid = hc.cid
-			    	and hd.idx=#{idx}
-			    order by hd.COMPOSITIONNO
+				    JTB_HEALTHYDIET_MAIN
  			  ]]>
-	
+
 	</select>
-	
-	
-	
-	
+
+
+
 
 </mapper>

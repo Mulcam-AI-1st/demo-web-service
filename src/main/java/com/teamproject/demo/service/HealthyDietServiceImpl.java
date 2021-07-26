@@ -1,14 +1,13 @@
 package com.teamproject.demo.service;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.teamproject.demo.dao.HealthyDietDAO;
-import com.teamproject.demo.vo.HealthyDietDetailVO;
 import com.teamproject.demo.vo.HealthyDietVO;
+import com.teamproject.demo.vo.OpenApiRecomendDietVO;
 
 @Service
 public class HealthyDietServiceImpl implements HealthyDietService {
@@ -30,12 +29,16 @@ public class HealthyDietServiceImpl implements HealthyDietService {
 		return dao.selectArticleById(idx);
 	}
 
+		@Override
+	public void copyHealthyDietMain(OpenApiRecomendDietVO diet) {
+		dao.insertHealthyDietMain(diet);
+		
+	}
+
 	@Override
-	public List<HealthyDietDetailVO> searchCompositionById(String idx) {
+	public int searchHealthyDietMaxIdx() {
 		
-		System.out.println("searchCompositionById  idx  " + idx );
-		
-		return dao.selectArticleDetailById(idx);
+		return dao.selectHealthyDietIdxMax();
 	}
 
 }

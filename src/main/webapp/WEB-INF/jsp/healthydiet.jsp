@@ -41,6 +41,7 @@ function pickedIDX(articleId) {
 
 <main>
 
+
   <section class="py-5 text-center container">
     <div class="row py-lg-5">
       <div class="col-lg-6 col-md-8 mx-auto">
@@ -90,14 +91,14 @@ function pickedIDX(articleId) {
                                     <p class="card-text" onclick="javascript:location.href='./HealthyDietDetail?idx=${List.idx}'">${List.title}  </p>
                                     <div class="d-flex justify-content-between align-items-center">
                                         <div class="btn-group">
-                                            <button type="button" class="btn btn-sm btn-outline-secondary">${List.categoryid}</button>
+                                            <button type="button" class="btn btn-sm btn-outline-secondary">${List.categoryname}</button>
 
                                             <button type="button" class="btn btn-sm btn-outline-secondary"   onclick="javascript:pickedIDX(${List.idx});" >
                                                 		자세히 보기
                                             </button>
                                             
                                         </div>
-                                        <small class="text-muted">
+                                        <!-- <small class="text-muted">
                                             <fmt:formatDate value="${List.postdate}" pattern="yyyy.MM.dd" />
                                             <c:choose>
                                                 <c:when test="${List.modifydate ne null }">
@@ -108,6 +109,7 @@ function pickedIDX(articleId) {
 
 
                                         </small>
+                                         -->
                                     </div>
                                 </div>
                             </div>
