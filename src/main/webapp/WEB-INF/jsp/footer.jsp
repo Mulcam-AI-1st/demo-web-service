@@ -26,7 +26,7 @@
 				  <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"></path>
 				</svg>
 
-                </button>
+                <!-- </button> -->
                 <br>
                 <p style="color:white"><b>추천이 완료되었습니다!!</b></p>
             </div>
